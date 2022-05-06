@@ -37,10 +37,17 @@ void readFile(Lista *l, Item d){
 
 void calculateMaxSum(Lista *l, Item sum){
 	sum.number = 0;
+	int aux;
 
 	for(int i = l->first; i < l->last; i++){
-		if(l->vet[i].number > 0){
-			sum.number += l->vet[i].number;
+		for(int k = i; k < l->last; k++){
+			aux = 0;
+			for(int j = i; j < k; j++){
+				aux += l->vet[j].number;
+			}
+			if(aux > sum.number){
+				sum.number = aux;
+			}
 		}
 	}
 
@@ -51,6 +58,6 @@ void LImprime(Lista *l){
 	cout << "____________________________________" << endl;
 	cout << "\tIMPRESSÃO DA LISTA\n\n";
 	for(int i = l->first; i < l->last; i++)
-		cout << l->vet[i].number << endl;
+		cout << i << ") " << l->vet[i].number << endl;
 	cout << "____________________________________" << endl;
 }
